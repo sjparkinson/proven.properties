@@ -2,3 +2,8 @@ sudo: required
 
 services:
   - docker
+
+script:
+  - docker build -t proven.properties .
+  - docker run -d -p 8080:80 proven.properties
+  - curl --retry 10 --retry-delay 5 -v http://localhost:8080
